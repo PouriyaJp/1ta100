@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use App\Jobs\SendProductCreatedEmail;
 use App\Mail\ProductCreated;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use function response;
 
 class ProductController extends Controller
 {

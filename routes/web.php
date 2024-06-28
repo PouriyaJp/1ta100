@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Web\CartController;
+use App\Http\Controllers\Web\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::resource('products', ProductController::class);
+
+Route::prefix('cart')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::delete('/remove/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 });
